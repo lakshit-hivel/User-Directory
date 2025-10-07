@@ -1,0 +1,18 @@
+.mainContainer {
+  display: flex;
+  max-width: 95vw;
+  height: 100%;
+  margin: 5rem auto;
+  border-radius: 20px;
+  box-shadow: 0 32px 64px rgba(34, 0, 255, 0.219);
+  background-color: #e4e4e422;
+  padding: 2rem;
+}
+
+.one {
+  flex: 1;
+}
+
+.two {
+  flex: 3;
+}

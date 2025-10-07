@@ -1,0 +1,21 @@
+.header-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 10;
+}
+
+.header-social-icons a {
+  text-decoration: none;
+  color: #6a7282;
+  cursor: pointer;
+}
+
+.header-social-icons a:hover {
+  color: #000;
+}
+
+.header-social-icons-blue a:hover {
+  color: #007bff !important;
+}
+

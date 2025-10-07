@@ -1,0 +1,37 @@
+.sidebar {
+  width: 280px;
+  padding: 24px;
+  margin: 0 auto;
+}
+
+.sidebar-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-heading {
+  margin: 12px 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5c6570;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #2b2f36;
+  margin: 8px 0;
+}
+
+.checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
