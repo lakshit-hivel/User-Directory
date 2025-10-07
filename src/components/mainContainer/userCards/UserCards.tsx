@@ -34,7 +34,7 @@ interface User {
   };
 }
 
-export function UserCards() {
+export function UserCards({ searchQuery }: { searchQuery: string }) {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
@@ -46,10 +46,17 @@ export function UserCards() {
   }, []);
   console.log(users);
 
+  const filteredUsers = users.filter(
+    (user) =>
+      user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
+      <p>{searchQuery}</p>
       <div className="user-cards-container">
-        {users.map((user, index) => (
+        {filteredUsers.map((user, index) => (
           <div className="user-card" key={index}>
             <img className="user-img" src={user.image} alt="" />
             <div className="user-card-info">

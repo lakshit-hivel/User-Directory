@@ -1,7 +1,8 @@
 import { Search } from "lucide-react";
 import "./hero.css";
 
-function Hero() {
+//onSearchChange: (query: string) => void means it takes query as a string and returns void
+function Hero({ onSearchChange }: { onSearchChange: (query: string) => void }) {
   return (
     <div>
       <div className="noto-sans-regular hero-container">
@@ -14,7 +15,7 @@ function Hero() {
           <input
             type="text"
             placeholder="Search users..."
-            onChange={(e) => e.target.value}
+            onChange={(e) => onSearchChange(e.target.value)}
             className="search-bar"
           />
           <button className="search-button">
