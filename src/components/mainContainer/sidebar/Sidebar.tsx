@@ -5,6 +5,7 @@ export function Sidebar({
 }: {
   setFilterQuery: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
+
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
 
@@ -23,7 +24,7 @@ export function Sidebar({
 
       <section className="filter-group">
         <h3 className="filter-heading">Gender</h3>
-        {["male", "female", "other"].map((gender) => (
+        {["male", "female"].map((gender) => (
           <label key={gender} className="checkbox">
             <input
               type="checkbox"

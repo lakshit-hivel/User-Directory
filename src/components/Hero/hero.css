@@ -18,11 +18,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 10px 16px rgba(100, 70, 94, 0.1);
-    max-width: 800px;
-    margin: 0 auto; */
 }
 
 .search-bar {
@@ -50,4 +45,10 @@
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .search-bar{
+    width: 100%;
+  }
 }

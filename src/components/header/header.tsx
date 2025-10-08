@@ -3,7 +3,7 @@ import "./header.css";
 
 function Header() {
   return (
-    <div className="flex justify-between items-center my-10 mx-15">
+    <div className="main-header">
       <div className="flex items-center gap-2">
         <svg
           width="50"

@@ -5,6 +5,13 @@
   z-index: 10;
 }
 
+.main-header{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2.5rem 3.75rem;
+}
+
 .header-social-icons a {
   text-decoration: none;
   color: #6a7282;
@@ -19,3 +26,12 @@
   color: #007bff !important;
 }
 
+@media (max-width: 768px) {
+  .header-social-icons {
+    gap: 10px;
+    font-size: 12px;
+  }
+  .main-header{
+    margin: 1.5rem 1.5rem;
+  }
+}
