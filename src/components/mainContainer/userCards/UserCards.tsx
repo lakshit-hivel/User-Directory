@@ -11,7 +11,13 @@ const fetchUsers = async () => {
   return res.data.users;
 };
 
-export function UserCards({ searchQuery }: { searchQuery: string }) {
+export function UserCards({
+  searchQuery,
+  filterQuery,
+}: {
+  searchQuery: string;
+  filterQuery: string[];
+}) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<UserType>();
   const { data: users, isLoading } = useQuery({
@@ -21,11 +27,23 @@ export function UserCards({ searchQuery }: { searchQuery: string }) {
 
   if (isLoading) return <div>Loading...</div>;
 
-  const filteredUsers = users.filter(
+  const searchUsers = users.filter(
     (user: UserType) =>
       user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.lastName.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const filteredUsers =
+    filterQuery.length === 0
+      ? searchUsers
+      : searchUsers.filter((user: UserType) =>
+          filterQuery.some(
+            (filter) =>
+              user.gender.toLowerCase() === filter.toLowerCase() ||
+              user.company.department.toLowerCase() === filter.toLowerCase() ||
+              user.role?.toLowerCase() === filter.toLowerCase()
+          )
+        );
 
   const openModal = (user: UserType) => {
     setShowModal(true);

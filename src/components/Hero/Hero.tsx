@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 import "./hero.css";
 
-//onSearchChange: (query: string) => void means it takes query as a string and returns void
+//onSearchChange: (query: string) => void; means it takes query as a string and returns void
 function Hero({ onSearchChange }: { onSearchChange: (query: string) => void }) {
   return (
     <div>

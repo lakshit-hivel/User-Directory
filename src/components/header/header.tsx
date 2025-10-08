@@ -32,13 +32,13 @@ function Header() {
         <h1 className="noto-sans-regular text-xl ">UserBase</h1>
       </div>
       <div className="header-social-icons">
-        <a href="" target="_blank">
+        <a href="https://github.com/lakshit-hivel" target="_blank">
           <Github className="header-social-icons-black " />
         </a>
-        <a href="" target="_blank">
+        <a href="https://x.com/lakshitagarwal7" target="_blank">
           <Twitter className="header-social-icons-blue " />
         </a>
-        <a href="" target="_blank">
+        <a href="https://www.linkedin.com/in/lakshit-agarwal-6082b9216/" target="_blank">
           <Linkedin className="header-social-icons-blue " />
         </a>
       </div>
