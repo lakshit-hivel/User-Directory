@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import "./UserCards.css";
 import axios from "axios";
 import { Mail, Phone, User } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 interface Address {
   address: string;
@@ -34,20 +34,21 @@ interface User {
   };
 }
 
-export function UserCards({ searchQuery }: { searchQuery: string }) {
-  const [users, setUsers] = useState<User[]>([]);
+const fetchUsers = async () => {
+  const res = await axios.get("https://dummyjson.com/users");
+  return res.data.users;
+};
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await axios.get("https://dummyjson.com/users");
-      setUsers(res.data.users);
-    };
-    fetchUsers();
-  }, []);
-  console.log(users);
+export function UserCards({ searchQuery }: { searchQuery: string }) {
+  const { data: users, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+  });
+
+  if (isLoading) return <div>Loading...</div>;
 
   const filteredUsers = users.filter(
-    (user) =>
+    (user: User) =>
       user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.lastName.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -56,7 +57,7 @@ export function UserCards({ searchQuery }: { searchQuery: string }) {
     <div>
       <p>{searchQuery}</p>
       <div className="user-cards-container">
-        {filteredUsers.map((user, index) => (
+        {filteredUsers.map((user: User, index: number) => (
           <div className="user-card" key={index}>
             <img className="user-img" src={user.image} alt="" />
             <div className="user-card-info">
