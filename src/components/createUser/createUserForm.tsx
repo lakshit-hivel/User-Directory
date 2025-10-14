@@ -6,18 +6,23 @@ import toast, { Toaster } from "react-hot-toast";
 export default function CreateUserForm() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    age: 0,
     gender: "",
-    profilePicture: "",
-    role: "",
+    email: "",
     phone: "",
-    password: "",
-    country: "",
+    profilePicture: "",
+    address: "",
+    city: "",
+    state: "",
+    company: "",
+    title: "",
+    department: "",
+    university: "",
+    role: "",
   });
 
   const handleCreateUser = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
     try {
       const res = await axios.post(
         "http://localhost:4000/api/new-user",
@@ -27,16 +32,23 @@ export default function CreateUserForm() {
       toast.success("User created successfully");
       setFormData({
         name: "",
-        email: "",
+        age: 0,
         gender: "",
-        profilePicture: "",
-        role: "",
+        email: "",
         phone: "",
-        password: "",
-        country: "",
+        profilePicture: "",
+        address: "",
+        city: "",
+        state: "",
+        company: "",
+        title: "",
+        department: "",
+        university: "",
+        role: "",
       });
     } catch (error) {
       console.error(error);
+      toast.error("Failed to create user");
     }
   };
 
@@ -47,119 +59,223 @@ export default function CreateUserForm() {
         <div className="user-form-container">
           <h1 className="user-form-title">Create User</h1>
           <form className="user-form" noValidate>
-            <div className="user-form-row">
-              <label htmlFor="name">Name</label>
-              <input
-                id="name"
-                type="text"
-                placeholder="John Doe"
-                required
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-              />
+            {/* Personal Information Section */}
+            <div className="form-section">
+              <h3 className="section-title">Personal Information</h3>
+              <div className="form-row">
+                <div className="form-field">
+                  <label htmlFor="name">Name *</label>
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="John Doe"
+                    required
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-field">
+                  <label htmlFor="age">Age *</label>
+                  <input
+                    id="age"
+                    type="number"
+                    placeholder="30"
+                    required
+                    value={formData.age}
+                    onChange={(e) =>
+                      setFormData({ ...formData, age: Number(e.target.value) })
+                    }
+                  />
+                </div>
+                <div className="form-field">
+                  <label htmlFor="gender">Gender *</label>
+                  <select
+                    id="gender"
+                    required
+                    value={formData.gender}
+                    onChange={(e) =>
+                      setFormData({ ...formData, gender: e.target.value })
+                    }
+                  >
+                    <option value="" disabled>
+                      Select gender
+                    </option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-field full-width">
+                  <label htmlFor="profilePicture">Profile Picture URL</label>
+                  <input
+                    id="profilePicture"
+                    type="url"
+                    placeholder="https://..."
+                    value={formData.profilePicture}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        profilePicture: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="user-form-row">
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                type="email"
-                placeholder="john@example.com"
-                required
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-              />
+            {/* Contact Information Section */}
+            <div className="form-section">
+              <h3 className="section-title">Contact Information</h3>
+              <div className="form-row">
+                <div className="form-field">
+                  <label htmlFor="email">Email *</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="john@example.com"
+                    required
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-field">
+                  <label htmlFor="phone">Phone</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    placeholder="+1 555 123 4567"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="user-form-row">
-              <label htmlFor="gender">Gender</label>
-              <select
-                id="gender"
-                defaultValue=""
-                required
-                value={formData.gender}
-                onChange={(e) =>
-                  setFormData({ ...formData, gender: e.target.value })
-                }
-              >
-                <option value="" disabled>
-                  Select gender
-                </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
+            {/* Address Section */}
+            <div className="form-section">
+              <h3 className="section-title">Address</h3>
+              <div className="form-row">
+                <div className="form-field full-width">
+                  <label htmlFor="address">Address</label>
+                  <input
+                    id="address"
+                    type="text"
+                    placeholder="123 Main St"
+                    value={formData.address}
+                    onChange={(e) =>
+                      setFormData({ ...formData, address: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-field">
+                  <label htmlFor="city">City</label>
+                  <input
+                    id="city"
+                    type="text"
+                    placeholder="New York"
+                    value={formData.city}
+                    onChange={(e) =>
+                      setFormData({ ...formData, city: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-field">
+                  <label htmlFor="state">State</label>
+                  <input
+                    id="state"
+                    type="text"
+                    placeholder="NY"
+                    value={formData.state}
+                    onChange={(e) =>
+                      setFormData({ ...formData, state: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="user-form-row">
-              <label htmlFor="profilePicture">Profile Picture URL</label>
-              <input
-                id="profilePicture"
-                type="url"
-                placeholder="https://..."
-                value={formData.profilePicture}
-                onChange={(e) =>
-                  setFormData({ ...formData, profilePicture: e.target.value })
-                }
-              />
+            {/* Work Information Section */}
+            <div className="form-section">
+              <h3 className="section-title">Work Information</h3>
+              <div className="form-row">
+                <div className="form-field">
+                  <label htmlFor="company">Company</label>
+                  <input
+                    id="company"
+                    type="text"
+                    placeholder="Company Name"
+                    value={formData.company}
+                    onChange={(e) =>
+                      setFormData({ ...formData, company: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-field">
+                  <label htmlFor="title">Title</label>
+                  <input
+                    id="title"
+                    type="text"
+                    placeholder="Job Title"
+                    value={formData.title}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-field">
+                  <label htmlFor="department">Department</label>
+                  <input
+                    id="department"
+                    type="text"
+                    placeholder="Department"
+                    value={formData.department}
+                    onChange={(e) =>
+                      setFormData({ ...formData, department: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-field">
+                  <label htmlFor="university">University</label>
+                  <input
+                    id="university"
+                    type="text"
+                    placeholder="University Name"
+                    value={formData.university}
+                    onChange={(e) =>
+                      setFormData({ ...formData, university: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-field">
+                  <label htmlFor="role">Role</label>
+                  <input
+                    id="role"
+                    type="text"
+                    placeholder="e.g. Admin"
+                    value={formData.role}
+                    onChange={(e) =>
+                      setFormData({ ...formData, role: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="user-form-row">
-              <label htmlFor="role">Role</label>
-              <input
-                id="role"
-                type="text"
-                placeholder="e.g. Admin"
-                value={formData.role}
-                onChange={(e) =>
-                  setFormData({ ...formData, role: e.target.value })
-                }
-              />
-            </div>
-
-            <div className="user-form-row">
-              <label htmlFor="phone">Phone</label>
-              <input
-                id="phone"
-                type="tel"
-                placeholder="+1 555 123 4567"
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-              />
-            </div>
-
-            <div className="user-form-row">
-              <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                required
-                value={formData.password}
-                onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
-              />
-            </div>
-
-            <div className="user-form-row">
-              <label htmlFor="country">Country</label>
-              <input
-                id="country"
-                type="text"
-                placeholder="United States"
-                value={formData.country}
-                onChange={(e) =>
-                  setFormData({ ...formData, country: e.target.value })
-                }
-              />
-            </div>
-
+            {/* Submit */}
             <div className="user-form-actions">
               <button
                 onClick={handleCreateUser}

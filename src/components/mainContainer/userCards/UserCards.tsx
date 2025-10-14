@@ -22,18 +22,16 @@ export function UserCards({
   const { data: users, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get("https://dummyjson.com/users");
-      dispatch(setUsers(res.data.users));
-      return res.data.users;
+      const res = await axios.get("http://localhost:4000/api/all-users");
+      dispatch(setUsers(res.data.data));
+      return res.data.data;
     },
   });
 
   if (isLoading) return <div>Loading...</div>;
 
-  const searchUsers = users?.filter(
-    (user: UserType) =>
-      user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.lastName.toLowerCase().includes(searchQuery.toLowerCase())
+  const searchUsers = users.filter((user: UserType) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const filteredUsers =
@@ -43,7 +41,7 @@ export function UserCards({
           filterQuery.some(
             (filter) =>
               user.gender.toLowerCase() === filter.toLowerCase() ||
-              user.company.department.toLowerCase() === filter.toLowerCase() ||
+              user.department.toLowerCase() === filter.toLowerCase() ||
               user.role?.toLowerCase() === filter.toLowerCase()
           )
         );
@@ -61,29 +59,28 @@ export function UserCards({
         </Link>
       </div>
       <div className="user-cards-container">
-        {filteredUsers.map((user: UserType, index: number) => (
-          <div
-            onClick={() => openModal(user)}
-            className="user-card"
-            key={index}
-          >
-            <img className="user-img" src={user.image} alt="" />
-            <div className="user-card-info">
-              <User size={20} />
-              <p>
-                {user.firstName} {user.lastName}
-              </p>
+        {filteredUsers &&
+          filteredUsers?.map((user: UserType, index: number) => (
+            <div
+              onClick={() => openModal(user)}
+              className="user-card"
+              key={index}
+            >
+              <img className="user-img" src={user.profilePicture} alt="" />
+              <div className="user-card-info">
+                <User size={20} />
+                <p>{user.name}</p>
+              </div>
+              <div className="user-card-info">
+                <Mail size={20} />
+                <p>{user.email}</p>
+              </div>
+              <div className="user-card-info">
+                <Phone size={20} />
+                <p>{user.phone}</p>
+              </div>
             </div>
-            <div className="user-card-info">
-              <Mail size={20} />
-              <p>{user.email}</p>
-            </div>
-            <div className="user-card-info">
-              <Phone size={20} />
-              <p>{user.phone}</p>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
       {selectedUser && (
         <Modal open={showModal} setOpen={setShowModal} user={selectedUser} />

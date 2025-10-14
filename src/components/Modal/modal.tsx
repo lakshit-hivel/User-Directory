@@ -16,8 +16,8 @@ export function Modal({
     <div className="modal-overlay">
       <div className="modal-container">
         <div className="user-basic-info">
-          <img src={user.image} alt={user.firstName} />
-          {user.firstName} {user.lastName}
+          <img src={user.profilePicture} alt={user.name} />
+          {user.name}
           <p>Age: {user.age}</p>
           <p>Gender: {user.gender}</p>
         </div>
@@ -28,13 +28,13 @@ export function Modal({
           <p>
             Phone: <a href={`tel:${user.phone}`}>{user.phone}</a>{" "}
           </p>
-          <p>Address: {user.address.address}</p>
-          <p>City: {user.address.city}</p>
-          <p>State: {user.address.state}</p>
+          <p>Address: {user.address}</p>
+          <p>City: {user.city}</p>
+          <p>State: {user.state}</p>
           <p>University: {user.university}</p>
-          <p>Company: {user.company.name}</p>
-          <p>Title: {user.company.title}</p>
-          <p>Department: {user.company.department}</p>
+          <p>Company: {user.name}</p>
+          <p>Title: {user.title}</p>
+          <p>Department: {user.department}</p>
           <p>Role: {user.role}</p>
         </div>
         <div className="close-icon">

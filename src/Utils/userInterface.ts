@@ -1,32 +1,17 @@
-interface Address {
-  address: string;
-  city: string;
-  postalCode: string;
-  state: string;
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-}
 export interface UserType {
   id: number;
-  firstName: string;
-  lastName: string;
+  name: string;
   age: number;
   gender: string;
   email: string;
   phone: string;
-  image: string;
-  height: number;
-  weight: number;
-  address: Address;
-  birthDate: string;
-  company: {
-    name: string;
-    title: string;
-    department: string;
-    address: Address;
-  };
+  profilePicture: string;
+  address: string;
+  city: string;
+  state: string;
+  company: string;
+  title: string;
+  department: string;
   university: string;
   role: string;
 }

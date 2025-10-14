@@ -9,11 +9,11 @@
 
 .user-form-container {
   width: 100%;
-  max-width: 520px;
+  max-width: 800px;
   background: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 16px;
+  padding: 24px;
   color: #111827;
 }
 
@@ -24,61 +24,124 @@
 }
 
 .user-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.user-form-row {
+/* Form Sections */
+.form-section {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.section-title {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+/* Form Rows */
+.form-row {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Form Fields */
+.form-field {
+  display: flex;
+  flex-direction: column;
   gap: 6px;
 }
 
-.user-form-row label {
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
   font-size: 12px;
+  font-weight: 500;
   color: #374151;
 }
 
-.user-form-row input,
-.user-form-row select {
+.form-field input,
+.form-field select {
   background: #ffffff;
   border: 1px solid #d1d5db;
   color: #111827;
   border-radius: 6px;
-  height: 38px;
-  padding: 0 10px;
+  height: 40px;
+  padding: 0 12px;
   outline: none;
   transition: border-color 0.15s ease;
+  font-size: 14px;
 }
 
-.user-form-row input::placeholder {
+.form-field input::placeholder {
   color: #9ca3af;
 }
 
-.user-form-row input:focus,
-.user-form-row select:focus {
+.form-field input:focus,
+.form-field select:focus {
   border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-form-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 16px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .form-section {
+    padding: 16px;
+  }
 }
 
 .user-form-actions {
-  margin-top: 6px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
 }
 
 .user-form-submit {
   width: 100%;
-  height: 38px;
+  height: 44px;
   background: #2563eb;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   color: #ffffff;
   font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
 .user-form-submit:hover {
   background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .user-form-submit:active {
   background: #1e40af;
+  transform: translateY(0);
 }
