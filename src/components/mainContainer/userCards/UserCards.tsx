@@ -12,9 +12,11 @@ import { Link } from "react-router-dom";
 export function UserCards({
   searchQuery,
   filterQuery,
+  getAPI,
 }: {
   searchQuery: string;
   filterQuery: string[];
+  getAPI: string;
 }) {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -22,7 +24,7 @@ export function UserCards({
   const { data: users, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:4000/api/all-users");
+      const res = await axios.get(getAPI);
       dispatch(setUsers(res.data.data));
       return res.data.data;
     },

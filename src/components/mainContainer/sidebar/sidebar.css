@@ -41,3 +41,20 @@
     display: none;
   }
 }
+
+.deletedUsers{
+  margin-top: 3rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 rgba(250, 160, 160, 0.1);
+  padding: 10px;
+  gap: 10px;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: #ffe2e2;
+  color: #222;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+}

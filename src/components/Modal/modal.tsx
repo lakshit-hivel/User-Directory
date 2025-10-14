@@ -1,6 +1,8 @@
+import axios from "axios";
 import type { UserType } from "../../Utils/userInterface";
 import "./modal.css";
-import { CircleX } from "lucide-react";
+import { CircleX, Trash2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 export function Modal({
   open,
@@ -12,6 +14,18 @@ export function Modal({
   setOpen: (open: boolean) => void;
 }) {
   if (!open) return null;
+
+  const handleDelete = async (id: number) => {
+    const res = await axios.delete(
+      "http://localhost:4000/api/delete-user/" + id
+    );
+    if (res.status === 200) {
+      toast.success("User deleted successfully");
+      setOpen(false);
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="modal-overlay">
       <div className="modal-container">
@@ -37,7 +51,8 @@ export function Modal({
           <p>Department: {user.department}</p>
           <p>Role: {user.role}</p>
         </div>
-        <div className="close-icon">
+        <div className="icons">
+          <Trash2 color="red" onClick={() => handleDelete(user.id)} />
           <CircleX onClick={() => setOpen(false)} />
         </div>
       </div>

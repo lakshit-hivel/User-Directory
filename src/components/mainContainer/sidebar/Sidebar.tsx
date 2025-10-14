@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import "./sidebar.css";
+import { Trash2 } from "lucide-react";
 
 export function Sidebar({
   setFilterQuery,
 }: {
   setFilterQuery: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
-
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
 
@@ -74,6 +75,15 @@ export function Sidebar({
           </label>
         ))}
       </section>
+
+      <Link to="/recently-deleted">
+        <section className="deletedUsers">
+          <div className="deletedUsers-icon">
+            <Trash2 color="red" />
+          </div>
+          <div className="deletedUsers-text">Recently Deleted</div>
+        </section>
+      </Link>
     </aside>
   );
 }

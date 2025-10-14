@@ -12,7 +12,7 @@ function MainConatiner({ searchQuery }: { searchQuery: string }) {
         <Sidebar setFilterQuery={setFilterQuery} />
       </div>
       <div className="two">
-        <UserCards searchQuery={searchQuery} filterQuery={filterQuery} />
+        <UserCards searchQuery={searchQuery} filterQuery={filterQuery} getAPI={"http://localhost:4000/api/all-users"}/>
       </div>
     </div>
   );
