@@ -1,17 +1,17 @@
-import { useState } from "react";
-import Header from "./components/header/header";
-import Hero from "./components/Hero/Hero";
-import MainConatiner from "./components/mainContainer/MainContainer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./home";
+import CreateUser from "./CreateUser";
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState("");
-
   return (
-    <div>
-      <Header />
-      <Hero onSearchChange={setSearchQuery} />
-      <MainConatiner searchQuery={searchQuery} />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create-user" element={<CreateUser />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

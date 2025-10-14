@@ -7,6 +7,7 @@ import { Modal } from "../../Modal/modal";
 import type { UserType } from "../../../Utils/userInterface";
 import { useDispatch } from "react-redux";
 import { setUsers } from "../../../Utils/features/userSlice";
+import { Link } from "react-router-dom";
 
 export function UserCards({
   searchQuery,
@@ -54,6 +55,11 @@ export function UserCards({
 
   return (
     <div>
+      <div className="create-user-button">
+        <Link to="/create-user">
+          <button className="create-user-button-button">Create User</button>
+        </Link>
+      </div>
       <div className="user-cards-container">
         {filteredUsers.map((user: UserType, index: number) => (
           <div

@@ -39,3 +39,25 @@
 .user-card-info p {
   font-size: 14px;
 }
+
+.create-user-button {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.create-user-button-button {
+  background-color: #fa4428e2;
+  cursor: pointer;
+  box-shadow: 0 10px 10px rgba(80, 17, 105, 0.1);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.create-user-button-button:hover {
+  background-color: #fa4428;
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
