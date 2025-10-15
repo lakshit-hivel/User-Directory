@@ -1,6 +1,6 @@
 import "./UserCards.css";
 import axios from "axios";
-import { Mail, Phone, User } from "lucide-react";
+import { Mail, Phone, Plus, User } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Modal } from "../../Modal/modal";
@@ -8,6 +8,7 @@ import type { UserType } from "../../../Utils/userInterface";
 import { useDispatch } from "react-redux";
 import { setUsers } from "../../../Utils/features/userSlice";
 import { Link } from "react-router-dom";
+import ExportCSV from "../../Export CSV/ExportCSV";
 
 export function UserCards({
   searchQuery,
@@ -57,8 +58,12 @@ export function UserCards({
     <div>
       <div className="create-user-button">
         <Link to="/create-user">
-          <button className="create-user-button-button">Create User</button>
+          <button className="create-user-button-button">
+            {" "}
+            <Plus size={20} /> New User
+          </button>
         </Link>
+        <ExportCSV users={users} />
       </div>
       <div className="user-cards-container">
         {filteredUsers &&

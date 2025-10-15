@@ -1,0 +1,17 @@
+.export-csv-button{
+    background-color: #25ab35ee;
+    cursor: pointer;
+    box-shadow: 0 10px 10px rgba(80, 17, 105, 0.1);
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.export-csv-button:hover{
+    background-color: #0ea21f;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}

@@ -45,19 +45,24 @@
   justify-content: right;
   align-items: center;
   margin-bottom: 10px;
+  flex-direction: row-reverse;
+  gap: 20px;
 }
 
 .create-user-button-button {
-  background-color: #fa4428e2;
+  background-color: #7c2974fc;
   cursor: pointer;
   box-shadow: 0 10px 10px rgba(80, 17, 105, 0.1);
   color: #fff;
-  padding: 10px;
+  padding: 7px 10px;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .create-user-button-button:hover {
-  background-color: #fa4428;
+  background-color: #7c2974e3;
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
 }
