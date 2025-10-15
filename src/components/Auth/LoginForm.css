@@ -1,4 +1,4 @@
-/* Reuse the same styles for register to keep consistent UI */
+/* Basic, clean, centered auth layout for Login */
 .auth-page {
   min-height: 100vh;
   display: flex;
