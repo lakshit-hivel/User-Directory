@@ -28,7 +28,10 @@ export default function CreateUserForm() {
     try {
       const res = await axios.post(
         "http://localhost:4000/api/new-user",
-        formData
+        formData,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
       console.log(res.data);
       toast.success("User created successfully");

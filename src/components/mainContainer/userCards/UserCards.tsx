@@ -25,7 +25,7 @@ export function UserCards({
   const { data: users, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get(getAPI);
+      const res = await axios.get(getAPI, {headers:{Authorization:`Bearer ${localStorage.getItem("token")}`}});
       dispatch(setUsers(res.data.data));
       return res.data.data;
     },

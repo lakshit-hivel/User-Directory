@@ -11,7 +11,10 @@ export default function DeletedUserCards() {
     queryKey: ["deleted-users"],
     queryFn: async () => {
       const res = await axios.get(
-        "http://localhost:4000/api/all-deleted-users"
+        "http://localhost:4000/api/all-deleted-users",
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
       return res.data.data;
     },
@@ -19,7 +22,13 @@ export default function DeletedUserCards() {
 
   const handleRestore = async (id: number) => {
     try {
-      await axios.put("http://localhost:4000/api/restore-user/" + id);
+      await axios.put(
+        "http://localhost:4000/api/restore-user/" + id,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
       toast.success("User restored successfully.");
       navigate("/");
     } catch (error) {

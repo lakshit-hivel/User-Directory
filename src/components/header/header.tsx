@@ -1,10 +1,15 @@
 import { Github, Linkedin, Twitter } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import "./header.css";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <div className="main-header">
-      <div className="flex items-center gap-2">
+      <div
+        className="flex items-center gap-2 cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         <svg
           width="50"
           height="40"
@@ -38,7 +43,10 @@ function Header() {
         <a href="https://x.com/lakshitagarwal7" target="_blank">
           <Twitter className="header-social-icons-blue " />
         </a>
-        <a href="https://www.linkedin.com/in/lakshit-agarwal-6082b9216/" target="_blank">
+        <a
+          href="https://www.linkedin.com/in/lakshit-agarwal-6082b9216/"
+          target="_blank"
+        >
           <Linkedin className="header-social-icons-blue " />
         </a>
       </div>

@@ -17,7 +17,8 @@ export function Modal({
 
   const handleDelete = async (id: number) => {
     const res = await axios.delete(
-      "http://localhost:4000/api/delete-user/" + id
+      "http://localhost:4000/api/delete-user/" + id,
+      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );
     if (res.status === 200) {
       toast.success("User deleted successfully");
