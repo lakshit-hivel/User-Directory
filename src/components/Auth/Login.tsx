@@ -3,7 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./LoginForm.css";
 
-export default function Login() {
+export default function Login({
+  setIsLoggedIn,
+}: {
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
+}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,6 +19,7 @@ export default function Login() {
         password,
       });
       localStorage.setItem("token", res.data.token);
+      setIsLoggedIn(true);
     } catch (error) {
       console.log(error);
     }

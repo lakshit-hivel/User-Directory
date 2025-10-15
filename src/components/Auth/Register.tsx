@@ -3,7 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./RegisterForm.css";
 
-export default function Register() {
+export default function Register({
+  setIsLoggedIn,
+}: {
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
+}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -17,6 +21,7 @@ export default function Register() {
         email,
       });
       localStorage.setItem("token", res.data.token);
+      setIsLoggedIn(true);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +33,9 @@ export default function Register() {
         <h2 className="auth-title">Create account</h2>
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="form-field">
-            <label className="form-label" htmlFor="email">Email</label>
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
             <input
               id="email"
               className="auth-input"
@@ -40,7 +47,9 @@ export default function Register() {
             />
           </div>
           <div className="form-field">
-            <label className="form-label" htmlFor="username">Username</label>
+            <label className="form-label" htmlFor="username">
+              Username
+            </label>
             <input
               id="username"
               className="auth-input"
@@ -52,7 +61,9 @@ export default function Register() {
             />
           </div>
           <div className="form-field">
-            <label className="form-label" htmlFor="password">Password</label>
+            <label className="form-label" htmlFor="password">
+              Password
+            </label>
             <input
               id="password"
               className="auth-input"
@@ -63,11 +74,15 @@ export default function Register() {
               required
             />
           </div>
-          <button className="auth-button" type="submit">Sign Up</button>
+          <button className="auth-button" type="submit">
+            Sign Up
+          </button>
         </form>
         <div className="auth-footer">
           <span>Already have an account?</span>
-          <Link className="auth-link" to="/auth/login">Log in</Link>
+          <Link className="auth-link" to="/auth/login">
+            Log in
+          </Link>
         </div>
       </div>
     </div>

@@ -2,9 +2,14 @@ import { Github, Linkedin, Twitter } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
 
-function Header() {
+function Header({
+  setIsLoggedIn,
+  isLoggedIn,
+}: {
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
+  isLoggedIn: boolean;
+}) {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem("token");
   return (
     <div className="main-header">
       <div
@@ -39,10 +44,12 @@ function Header() {
       </div>
       {isLoggedIn ? (
         <div className="logout-btn">
-          <button className="logout-btn-text"
+          <button
+            className="logout-btn-text"
             onClick={() => {
               localStorage.removeItem("token");
               navigate("/auth/login");
+              setIsLoggedIn(false);
             }}
           >
             Logout

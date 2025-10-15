@@ -6,13 +6,18 @@ import RecentlyDeleted from "./pages/RecentlyDeleted";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Header from "./components/header/header";
+import { useEffect, useState } from "react";
 
 function App() {
-  const isLoggedIn = localStorage.getItem("token");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) setIsLoggedIn(true);
+  }, [isLoggedIn]);
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route
           path="/"
@@ -32,11 +37,23 @@ function App() {
         <Route path="/auth">
           <Route
             path="login"
-            element={!isLoggedIn ? <Login /> : <Navigate to="/" />}
+            element={
+              !isLoggedIn ? (
+                <Login setIsLoggedIn={setIsLoggedIn} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
           <Route
             path="register"
-            element={!isLoggedIn ? <Register /> : <Navigate to="/" />}
+            element={
+              !isLoggedIn ? (
+                <Register setIsLoggedIn={setIsLoggedIn} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
         </Route>
       </Routes>
