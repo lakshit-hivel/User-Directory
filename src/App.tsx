@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import CreateUser from "./pages/CreateUser";
 import RecentlyDeleted from "./pages/RecentlyDeleted";
-import Register from "./components/Auth/register";
+import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Header from "./components/header/header";
 

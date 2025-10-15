@@ -25,7 +25,9 @@ export function UserCards({
   const { data: users, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get(getAPI, {headers:{Authorization:`Bearer ${localStorage.getItem("token")}`}});
+      const res = await axios.get(getAPI, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
       dispatch(setUsers(res.data.data));
       return res.data.data;
     },
@@ -65,6 +67,11 @@ export function UserCards({
         </Link>
         <ExportCSV users={users} />
       </div>
+      {filteredUsers.length === 0 && (
+        <div className="no-users-found">
+          No users found. Try creating a new user.
+        </div>
+      )}
       <div className="user-cards-container">
         {filteredUsers &&
           filteredUsers?.map((user: UserType, index: number) => (

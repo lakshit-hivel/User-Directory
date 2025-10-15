@@ -4,6 +4,7 @@ import "./header.css";
 
 function Header() {
   const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("token");
   return (
     <div className="main-header">
       <div
@@ -36,20 +37,33 @@ function Header() {
         </svg>
         <h1 className="noto-sans-regular text-xl ">UserBase</h1>
       </div>
-      <div className="header-social-icons">
-        <a href="https://github.com/lakshit-hivel" target="_blank">
-          <Github className="header-social-icons-black " />
-        </a>
-        <a href="https://x.com/lakshitagarwal7" target="_blank">
-          <Twitter className="header-social-icons-blue " />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/lakshit-agarwal-6082b9216/"
-          target="_blank"
-        >
-          <Linkedin className="header-social-icons-blue " />
-        </a>
-      </div>
+      {isLoggedIn ? (
+        <div className="logout-btn">
+          <button className="logout-btn-text"
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/auth/login");
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <div className="header-social-icons">
+          <a href="https://github.com/lakshit-hivel" target="_blank">
+            <Github className="header-social-icons-black " />
+          </a>
+          <a href="https://x.com/lakshitagarwal7" target="_blank">
+            <Twitter className="header-social-icons-blue " />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/lakshit-agarwal-6082b9216/"
+            target="_blank"
+          >
+            <Linkedin className="header-social-icons-blue " />
+          </a>
+        </div>
+      )}
     </div>
   );
 }

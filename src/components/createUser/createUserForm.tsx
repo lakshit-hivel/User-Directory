@@ -23,7 +23,7 @@ export default function CreateUserForm() {
     role: "",
   });
 
-  const handleCreateUser = async (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleCreateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await axios.post(
@@ -64,7 +64,7 @@ export default function CreateUserForm() {
       <div className="user-form-page">
         <div className="user-form-container">
           <h1 className="user-form-title">Create User</h1>
-          <form className="user-form" noValidate>
+          <form className="user-form" onSubmit={handleCreateUser}>
             {/* Personal Information Section */}
             <div className="form-section">
               <h3 className="section-title">Personal Information</h3>
@@ -116,11 +116,12 @@ export default function CreateUserForm() {
               </div>
               <div className="form-row">
                 <div className="form-field full-width">
-                  <label htmlFor="profilePicture">Profile Picture URL</label>
+                  <label htmlFor="profilePicture">Profile Picture URL *</label>
                   <input
                     id="profilePicture"
                     type="url"
                     placeholder="https://..."
+                    required
                     value={formData.profilePicture}
                     onChange={(e) =>
                       setFormData({
@@ -151,11 +152,12 @@ export default function CreateUserForm() {
                   />
                 </div>
                 <div className="form-field">
-                  <label htmlFor="phone">Phone</label>
+                  <label htmlFor="phone">Phone *</label>
                   <input
                     id="phone"
                     type="tel"
                     placeholder="+1 555 123 4567"
+                    required
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -170,11 +172,12 @@ export default function CreateUserForm() {
               <h3 className="section-title">Address</h3>
               <div className="form-row">
                 <div className="form-field full-width">
-                  <label htmlFor="address">Address</label>
+                  <label htmlFor="address">Address *</label>
                   <input
                     id="address"
                     type="text"
                     placeholder="123 Main St"
+                    required
                     value={formData.address}
                     onChange={(e) =>
                       setFormData({ ...formData, address: e.target.value })
@@ -184,11 +187,12 @@ export default function CreateUserForm() {
               </div>
               <div className="form-row">
                 <div className="form-field">
-                  <label htmlFor="city">City</label>
+                  <label htmlFor="city">City *</label>
                   <input
                     id="city"
                     type="text"
                     placeholder="New York"
+                    required
                     value={formData.city}
                     onChange={(e) =>
                       setFormData({ ...formData, city: e.target.value })
@@ -196,11 +200,12 @@ export default function CreateUserForm() {
                   />
                 </div>
                 <div className="form-field">
-                  <label htmlFor="state">State</label>
+                  <label htmlFor="state">State *</label>
                   <input
                     id="state"
                     type="text"
                     placeholder="NY"
+                    required
                     value={formData.state}
                     onChange={(e) =>
                       setFormData({ ...formData, state: e.target.value })
@@ -215,11 +220,12 @@ export default function CreateUserForm() {
               <h3 className="section-title">Work Information</h3>
               <div className="form-row">
                 <div className="form-field">
-                  <label htmlFor="company">Company</label>
+                  <label htmlFor="company">Company *</label>
                   <input
                     id="company"
                     type="text"
                     placeholder="Company Name"
+                    required
                     value={formData.company}
                     onChange={(e) =>
                       setFormData({ ...formData, company: e.target.value })
@@ -227,11 +233,12 @@ export default function CreateUserForm() {
                   />
                 </div>
                 <div className="form-field">
-                  <label htmlFor="title">Title</label>
+                  <label htmlFor="title">Title *</label>
                   <input
                     id="title"
                     type="text"
                     placeholder="Job Title"
+                    required
                     value={formData.title}
                     onChange={(e) =>
                       setFormData({ ...formData, title: e.target.value })
@@ -241,23 +248,37 @@ export default function CreateUserForm() {
               </div>
               <div className="form-row">
                 <div className="form-field">
-                  <label htmlFor="department">Department</label>
-                  <input
+                  <label htmlFor="department">Department *</label>
+                  <select
                     id="department"
-                    type="text"
-                    placeholder="Department"
+                    required
                     value={formData.department}
                     onChange={(e) =>
                       setFormData({ ...formData, department: e.target.value })
                     }
-                  />
+                  >
+                    <option value="" disabled>
+                      Select Department
+                    </option>
+                    <option value="engineering">Engineering</option>
+                    <option value="support">Support</option>
+                    <option value="legal">Legal</option>
+                    <option value="hr">HR</option>
+                    <option value="project management">
+                      Project Management
+                    </option>
+                    <option value="marketing">Marketing</option>
+                    <option value="services">Services</option>
+                    <option value="accounting">Accounting</option>
+                  </select>
                 </div>
                 <div className="form-field">
-                  <label htmlFor="university">University</label>
+                  <label htmlFor="university">University *</label>
                   <input
                     id="university"
                     type="text"
                     placeholder="University Name"
+                    required
                     value={formData.university}
                     onChange={(e) =>
                       setFormData({ ...formData, university: e.target.value })
@@ -267,27 +288,29 @@ export default function CreateUserForm() {
               </div>
               <div className="form-row">
                 <div className="form-field">
-                  <label htmlFor="role">Role</label>
-                  <input
+                  <label htmlFor="role">Role *</label>
+                  <select
                     id="role"
-                    type="text"
-                    placeholder="e.g. Admin"
+                    required
                     value={formData.role}
                     onChange={(e) =>
                       setFormData({ ...formData, role: e.target.value })
                     }
-                  />
+                  >
+                    <option value="" disabled>
+                      Select Role
+                    </option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="manager">Moderator</option>
+                  </select>
                 </div>
               </div>
             </div>
 
             {/* Submit */}
             <div className="user-form-actions">
-              <button
-                onClick={handleCreateUser}
-                type="submit"
-                className="user-form-submit"
-              >
+              <button type="submit" className="user-form-submit">
                 Create
               </button>
             </div>
