@@ -2,8 +2,10 @@ import { useState } from "react";
 import "./createUserForm.css";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateUserForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     age: 0,
@@ -30,6 +32,7 @@ export default function CreateUserForm() {
       );
       console.log(res.data);
       toast.success("User created successfully");
+      navigate("/");
       setFormData({
         name: "",
         age: 0,

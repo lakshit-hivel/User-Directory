@@ -1,0 +1,46 @@
+.heading-deleted-users {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #222;
+  font-weight: 600;
+}
+.deleted-user-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px rgba(80, 17, 105, 0.1);
+  margin: 10px;
+  padding: 30px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.deleted-user-card img {
+  width: 200px;
+  height: 200px;
+}
+
+.deleted-user-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.deleted-user-card button {
+  background-color: #30b521e6;
+  color: #fff;
+  padding: 7px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.deleted-user-card button:hover {
+  background-color: #30b521;
+}
