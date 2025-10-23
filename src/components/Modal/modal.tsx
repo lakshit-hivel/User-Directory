@@ -3,6 +3,7 @@ import type { UserType } from "../../Utils/userInterface";
 import "./modal.css";
 import { CircleX, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
+import { backendURL } from "../../Utils/backendURL";
 
 export function Modal({
   open,
@@ -17,7 +18,7 @@ export function Modal({
 
   const handleDelete = async (id: number) => {
     const res = await axios.delete(
-      "http://localhost:4000/api/delete-user/" + id,
+      `${backendURL}/api/delete-user/${id}`,
       { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );
     if (res.status === 200) {

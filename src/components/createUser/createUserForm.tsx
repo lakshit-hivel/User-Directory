@@ -3,6 +3,7 @@ import "./createUserForm.css";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { backendURL } from "../../Utils/backendURL";
 
 export default function CreateUserForm() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function CreateUserForm() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/new-user",
+        `${backendURL}/api/new-user`,
         formData,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

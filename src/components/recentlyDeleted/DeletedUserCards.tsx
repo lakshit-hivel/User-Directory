@@ -4,18 +4,18 @@ import type { UserType } from "../../Utils/userInterface";
 import "./deletedUserCards.css";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { backendURL } from "../../Utils/backendURL";
 
 export default function DeletedUserCards() {
   const navigate = useNavigate();
   const { data: deletedUsers } = useQuery({
     queryKey: ["deleted-users"],
     queryFn: async () => {
-      const res = await axios.get(
-        "http://localhost:4000/api/all-deleted-users",
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
+      const res = await axios.get(`${backendURL}/api/all-deleted-users`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       return res.data.data;
     },
   });
@@ -23,10 +23,12 @@ export default function DeletedUserCards() {
   const handleRestore = async (id: number) => {
     try {
       await axios.put(
-        "http://localhost:4000/api/restore-user/" + id,
+        `${backendURL}/api/restore-user/${id}`,
         {},
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
       toast.success("User restored successfully.");

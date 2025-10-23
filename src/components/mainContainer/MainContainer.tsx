@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./MainContainer.css";
 import { Sidebar } from "./sidebar/Sidebar";
 import { UserCards } from "./userCards/UserCards";
+import { backendURL } from "../../Utils/backendURL";
 
 function MainConatiner({ searchQuery }: { searchQuery: string }) {
   const [filterQuery, setFilterQuery] = useState<string[]>([]);
@@ -12,7 +13,11 @@ function MainConatiner({ searchQuery }: { searchQuery: string }) {
         <Sidebar setFilterQuery={setFilterQuery} />
       </div>
       <div className="two">
-        <UserCards searchQuery={searchQuery} filterQuery={filterQuery} getAPI={"http://localhost:4000/api/all-users"}/>
+        <UserCards
+          searchQuery={searchQuery}
+          filterQuery={filterQuery}
+          getAPI={`${backendURL}/api/all-users`}
+        />
       </div>
     </div>
   );

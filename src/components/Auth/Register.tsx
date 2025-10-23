@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./RegisterForm.css";
+import { backendURL } from "../../Utils/backendURL";
 
 export default function Register({
   setIsLoggedIn,
@@ -15,7 +16,7 @@ export default function Register({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/auth/register", {
+      const res = await axios.post(`${backendURL}/auth/register`, {
         username,
         password,
         email,
